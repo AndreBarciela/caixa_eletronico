@@ -1,9 +1,8 @@
 var GraphQLObjectType = require('graphql').GraphQLObjectType;
 var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLID = require('graphql').GraphQLID;
-var GraphQLString = require('graphql').GraphQLString;
-var GraphQLInteger = require('graphql').GraphQLInteger;
-var GraphQLDouble = require('graphql').GraphQLDouble;
+var GraphQLInt = require('graphql').GraphQLInt;
+var GraphQLFloat = require('graphql').GraphQLFloat;
 
 exports.contaType = new GraphQLObjectType({
     name: 'conta',
@@ -13,10 +12,10 @@ exports.contaType = new GraphQLObjectType({
                 type: new GraphQLNonNull(GraphQLID)
             },      
             conta: {
-                type: GraphQLInteger
+                type: GraphQLInt
             },     
             saldo: {
-                type: GraphQLDouble
+                type: GraphQLFloat
             }
         }
     }
