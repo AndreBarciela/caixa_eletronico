@@ -4,7 +4,7 @@ services:
 #define a service called app
   app:
 #adding a container name
-    container_name: graphqlapp
+    container_name: caixa_eletronico_app
 #restart the container automatically if it fails
     restart: always
 #building the app image using the Dockerfile in the current directory
@@ -16,7 +16,7 @@ services:
       - mongo
 #create another service called mongo
   mongo:
-    container_name: graphqlmongo
+    container_name: caixa_eletronico_mongo
 #pull the official mongodb image from DockerHub registry
     image: mongo
 #mount the host directory for persistent storage

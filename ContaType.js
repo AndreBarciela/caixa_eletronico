@@ -5,7 +5,7 @@ var GraphQLString = require('graphql').GraphQLString;
 var GraphQLInteger = require('graphql').GraphQLInteger;
 var GraphQLDouble = require('graphql').GraphQLDouble;
 
-exports.bookType = new GraphQLObjectType({
+exports.contaType = new GraphQLObjectType({
     name: 'conta',
     fields:  () => {
         return {
