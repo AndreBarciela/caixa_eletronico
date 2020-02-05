@@ -3,11 +3,11 @@ var Schema = mongoose.Schema;
 
 var ContaSchema = new Schema({
   conta: {
-    type: Integer,
+    type: Number,
     required: true
   },
   saldo: {
-    type: Double,
+    type: Number,
     required: true
   }
 });

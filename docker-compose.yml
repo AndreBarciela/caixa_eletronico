@@ -1,4 +1,4 @@
-version: "2"
+version: "3.1"
 
 services:
 #define a service called app
@@ -14,16 +14,19 @@ services:
       - "4000:4000"
     links:
       - mongo
+
+
+      
 #create another service called mongo
   mongo:
     container_name: caixa_eletronico_mongo
 #pull the official mongodb image from DockerHub registry
     image: mongo
-#mount the host directory for persistent storage
-    volumes:
-      - ./data:/data/db
     ports:
       - "27017:27017"
+
+
+
 #creating a service called admin-mongo
   admin-mongo:
 #pull down the official image from DockerHub registry

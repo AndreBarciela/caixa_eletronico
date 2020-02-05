@@ -6,16 +6,16 @@ var contaType = require('../types/ContaType');
 var contaModel = require('../../models/Conta');
 
 exports.update = {
-    type: contaType.contaType,
+    type: contaType.ContaType,
     args: {
         id: {
             type: new GraphQLNonNull(GraphQLID)
         },
         conta: {
-            type: new GraphQLNonNull(GraphQLInt),
+            type: new GraphQLNonNull(GraphQLInt)
         },
         saldo: {
-            type: new GraphQLNonNull(GraphQLFloat),
+            type: new GraphQLNonNull(GraphQLFloat)
         }
     },
     resolve: async(root, args) =>{

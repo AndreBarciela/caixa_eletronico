@@ -4,7 +4,7 @@ var GraphQLID = require('graphql').GraphQLID;
 var GraphQLInt = require('graphql').GraphQLInt;
 var GraphQLFloat = require('graphql').GraphQLFloat;
 
-exports.contaType = new GraphQLObjectType({
+exports.ContaType = new GraphQLObjectType({
     name: 'conta',
     fields:  () => {
         return {

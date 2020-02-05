@@ -4,8 +4,8 @@ var GraphQLFloat = require('graphql').GraphQLFloat;
 var contaType = require('../types/ContaType');
 var contaModel = require('../../models/Conta');
 
-exports.addConta = {
-  type: contaType.contaType,
+exports.add = {
+  type: contaType.ContaType,
 
   args: {
     conta: {

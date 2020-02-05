@@ -1,25 +1,31 @@
 var GraphQLObjectType = require('graphql').GraphQLObjectType;
+var GraphQLNonNull = require('graphql').GraphQLNonNull;
 var GraphQLList = require('graphql').GraphQLList;
-var GraphQLInteger = require('graphql').GraphQLInteger;
+var GraphQLInt = require('graphql').GraphQLInt;
 //import conta model 
 var ContaModel = require('../../models/Conta');
 //import GraphQL ContaType
-var contaType = require('../types/ContaType').contaType;
+var contaType = require('../types/ContaType').ContaType;
 
 // Query
 exports.ContaQuery = new GraphQLObjectType({
-  name: 'saldo',
+  name: 'Query',
   fields: () => {
     return {
-      contas: {
+      saldo: {
         type: new GraphQLList(contaType),
-        args: {conta:{type:GraphQLInteger}},
-        resolve:  async ()=> {
-          const contas = await ContaModel.findOne({conta: args.conta})
-          if (!contas) {
+        args: {
+          conta: {
+            type: new GraphQLNonNull(GraphQLInt)
+          }
+        },
+        resolve:  async (root, args)=> {
+          var query = {conta: args.conta};
+          const conta = await ContaModel.find(query)
+          if (!conta) {
             throw new Error('error while fetching data')
           }
-          return contas
+          return conta
         }
       }
     }
