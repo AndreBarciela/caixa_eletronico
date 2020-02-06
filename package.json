@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha __tests__/*.test.js",
     "start": "node server.js"
   },
   "keywords": [],
@@ -15,5 +15,10 @@
     "express-graphql": "^0.6.12",
     "graphql": "^14.0.2",
     "mongoose": "^5.3.5"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "supertest": "^4.0.2",
+    "chai": "^4.2.0"
   }
 }
