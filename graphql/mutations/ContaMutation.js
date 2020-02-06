@@ -1,11 +1,7 @@
-var addconta = require('./AddConta').add;
-var updateconta = require('./UpdateConta').update;
-var deleteconta = require('./DeleteConta').remove;
 var sacar = require('./SacarConta').sacar;
+var depositar = require('./DepositarConta').depositar;
 
 module.exports = {
-  addconta,
-  updateconta,
-  deleteconta,
-  sacar
+  sacar,
+  depositar
 }

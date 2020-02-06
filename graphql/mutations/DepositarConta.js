@@ -4,7 +4,7 @@ var contaType = require('../types/ContaType');
 var ContaModel = require('../../models/Conta');
 const { errorName } = require('../../constants');
 
-exports.sacar = {
+exports.depositar = {
     type: contaType.ContaType,
     args: {
         conta: {
@@ -15,15 +15,14 @@ exports.sacar = {
         }
     },
     resolve: async(root, args) => {
+        if (args.valor <= 0) {
+            throw new Error(errorName.VALORZERODEPOSITO);
+        }
+
         var query = {conta: args.conta};
         const conta = await ContaModel.findOne(query);
 
-        if (args.valor > conta["saldo"]) {
-            throw new Error(errorName.UNAUTHORIZED);
-        } else if (args.valor <= 0) {
-            throw new Error(errorName.VALORZEROSAQUE);
-        }
-        var valorAtualizado = conta["saldo"] - args.valor;
+        var valorAtualizado = conta["saldo"] + args.valor;
         const UpdatedConta = await ContaModel.findByIdAndUpdate(conta["id"], {saldo: valorAtualizado}, {new: true});
         if (!UpdatedConta) {
             throw new Error(errorName.UPDATEERROR)

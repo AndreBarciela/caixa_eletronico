@@ -1,6 +1,7 @@
 exports.errorName = {
     UNAUTHORIZED: 'UNAUTHORIZED',
-    VALORZERO: 'VALORZERO',
+    VALORZEROSAQUE: 'VALORZEROSAQUE',
+    VALORZERODEPOSITO: 'VALORZERODEPOSITO',
     UPDATEERROR: 'UPDATEERROR'
 }
 
@@ -9,8 +10,12 @@ exports.errorType = {
         message: 'Saldo insuficiente.',
         statusCode: 401
     },
-    VALORZERO: {
+    VALORZEROSAQUE: {
         message: 'Não é possível fazer o saque desse valor.',
+        statusCode: 400
+    },
+    VALORZERODEPOSITO: {
+        message: 'Não é possível fazer o depósito desse valor.',
         statusCode: 400
     },
     UPDATEERROR: {
