@@ -21,13 +21,15 @@ exports.sacar = {
 
         if (args.valor > conta["saldo"]) {
             throw new Error(errorName.UNAUTHORIZED);
-        } else {
-            var valorAtualizado = conta["saldo"] - args.valor;
-            const UpdatedConta = await ContaModel.findByIdAndUpdate(conta["id"], {saldo: valorAtualizado}, {new: true});
-            if (!UpdatedConta) {
-                throw new Error(errorName.UPDATEERROR)
-            }
-            return UpdatedConta;
+        } else if (args.valor <= 0) {
+            throw new Error(errorName.VALORZERO);
         }
+        var valorAtualizado = conta["saldo"] - args.valor;
+        const UpdatedConta = await ContaModel.findByIdAndUpdate(conta["id"], {saldo: valorAtualizado}, {new: true});
+        if (!UpdatedConta) {
+            throw new Error(errorName.UPDATEERROR)
+        }
+        return UpdatedConta;
+        
     }
 }
