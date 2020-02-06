@@ -6,7 +6,7 @@ var ContaModel = require('../../models/Conta');
 const { errorName } = require('../../constants');
 
 exports.sacar = {
-    type: GraphQLString,
+    type: contaType.ContaType,
     args: {
         conta: {
             type: new GraphQLNonNull(GraphQLInt)
@@ -20,15 +20,14 @@ exports.sacar = {
         const conta = await ContaModel.findOne(query);
 
         if (args.valor > conta["saldo"]) {
-            throw new Error(errorName.UNAUTHORIZED)
+            throw new Error(errorName.UNAUTHORIZED);
         } else {
-            return "Pode sacar...";
+            var valorAtualizado = conta["saldo"] - args.valor;
+            const UpdatedConta = await ContaModel.findByIdAndUpdate(conta["id"], {saldo: valorAtualizado}, {new: true});
+            if (!UpdatedConta) {
+                throw new Error(errorName.UPDATEERROR)
+            }
+            return UpdatedConta;
         }
-
-        // const UpdatedConta = await contaModel.findByIdAndUpdate(args.id, args);
-        // if (!UpdatedConta) {
-        //   throw new Error('Error')
-        // }
-        // return UpdatedConta;
     }
 }
