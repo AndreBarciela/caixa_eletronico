@@ -21,6 +21,9 @@ exports.depositar = {
 
         var query = {conta: args.conta};
         const conta = await ContaModel.findOne(query);
+        if (!conta) {
+            throw new Error(errorName.ACCOUNTNOTEXIST);
+        }
 
         var valorAtualizado = conta["saldo"] + args.valor;
         const UpdatedConta = await ContaModel.findByIdAndUpdate(conta["id"], {saldo: valorAtualizado}, {new: true});

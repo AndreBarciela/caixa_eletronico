@@ -2,7 +2,8 @@ exports.errorName = {
     UNAUTHORIZED: 'UNAUTHORIZED',
     VALORZEROSAQUE: 'VALORZEROSAQUE',
     VALORZERODEPOSITO: 'VALORZERODEPOSITO',
-    UPDATEERROR: 'UPDATEERROR'
+    UPDATEERROR: 'UPDATEERROR',
+    ACCOUNTNOTEXIST: 'ACCOUNTNOTEXIST'
 }
 
 exports.errorType = {
@@ -21,5 +22,9 @@ exports.errorType = {
     UPDATEERROR: {
         message: 'Não foi possível atualizar a sua conta.',
         statusCode: 403
+    },
+    ACCOUNTNOTEXIST: {
+        message: 'Não foi possível encontrar a sua conta.',
+        statusCode: 402
     }
 }

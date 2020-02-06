@@ -17,6 +17,9 @@ exports.sacar = {
     resolve: async(root, args) => {
         var query = {conta: args.conta};
         const conta = await ContaModel.findOne(query);
+        if (!conta) {
+            throw new Error(errorName.ACCOUNTNOTEXIST);
+        }
 
         if (args.valor > conta["saldo"]) {
             throw new Error(errorName.UNAUTHORIZED);
