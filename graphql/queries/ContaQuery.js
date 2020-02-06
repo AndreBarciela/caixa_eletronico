@@ -22,11 +22,11 @@ exports.ContaQuery = new GraphQLObjectType({
         },
         resolve: async (root, args)=> {
           var query = {conta: args.conta};
-          const conta = await ContaModel.findOne(query)
+          const conta = await ContaModel.findOne(query);
           if (!conta) {
-            throw new Error('error while fetching data')
+            throw new Error('error while fetching data');
           }
-          return conta["saldo"]
+          return conta["saldo"];
         }
       }
     }

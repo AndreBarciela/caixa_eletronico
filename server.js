@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const graphqlExpress = require("express-graphql");
 const contaSchema = require('./graphql/ContaSchema').ContaSchema;
+const getErrorCode = require('./utils/errors');
 
 mongoose.connect('mongodb://mongo/myappdb', (err) => {
     console.log("try to connect to mongo");
@@ -17,9 +18,11 @@ app.listen(app.get('port'),  () =>{
 
 app.use('/graphql', graphqlExpress({
     schema: contaSchema,
-    rootValue: global,
-    pretty: true,
-    graphiql: true
+    graphiql: true,
+    formatError: (err) => {
+        const error = getErrorCode(err.message)
+        return ({ message: error.message, statusCode: error.statusCode })
+    }
 }));
 
 app.get('/', (req, res) => {
